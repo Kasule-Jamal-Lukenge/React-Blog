@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const Create = () => {
     const [title, setTitle] = useState('');
     const [body, setBody ] = useState('');
     const [ author, setAuthor ] = useState('');
     const [isPending, setIsPending] = useState(false);
+    const history = useHistory();
 
     const apiUrl = 'http://localhost:8000/blogs';
 
@@ -20,6 +22,8 @@ const Create = () => {
         }).then(()=>{
                 console.log("New Blog Added");
                 setIsPending(false);
+                // history.go(-1);
+                history.push('/');
         })
     }
 
