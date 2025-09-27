@@ -1,16 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BlogList from "./BlogList";
 
 function Home(){
-    exportconst [blogs, setBlogs] = useState([
-        {id: 1, title: "Man Utd Rennaissance", body: "Amorim is not on jokes", author: "Delmar Abubakar"},
-        {id: 2, title: "City Struggle", body: "Martinelli Saves The Day", author: "Alexander Kisekka"},
-         {id: 3, title: "Chelsea Stunned", body: "Marresca Fumbles", author: "Kasule Jamal Lukenge"}
-    ]); 
-    
+
+    const apiUrl = 'http://localhost:8000/blogs';
+
+    const [blogs, setBlogs] = useState(null); 
+    const [isPending, setIsPending] = useState(true);
+
+    useEffect(() => {
+        // not practical for a real world application as it forces a user to wait for more time 
+        setTimeout(()=> {
+            fetch(apiUrl)
+                .then(res => {
+                    return res.json();
+                })
+                .then((data) => {
+                    setBlogs(data);
+                    setIsPending(false);
+                    console.log(data)
+                })
+        }, 1000)
+    }, []);
+
     return (
         <div className="home">
-            <BlogList/>
+            { isPending && <div>Loading...</div>}
+            { blogs && <BlogList blogs={blogs} title="All Blogs"/> }
         </div>
     );
 }

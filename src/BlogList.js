@@ -1,14 +1,13 @@
-function BlogList(){
-    // const [blogs, setBlogs] = useState([
-    //     {id: 1, title: "Man Utd Rennaissance", body: "Amorim is not on jokes", author: "Delmar Abubakar"},
-    //     {id: 2, title: "City Struggle", body: "Martinelli Saves The Day", author: "Alexander Kisekka"},
-    //      {id: 3, title: "Chelsea Stunned", body: "Marresca Fumbles", author: "Kasule Jamal Lukenge"}
-    // ]); 
+const BlogList = (props) => {
+
+    const blogs = props.blogs;
+    const title = props.title;
 
     return(
         <div className="blog-list">
+            <h2>{title}</h2>
             {blogs.map(blog => (
-                <div className="blog-preview">
+                <div className="blog-preview" key={blog.id}>
                     <h2>{blog.title}</h2>
                     <p>Written By: {blog.author}</p>
                 </div>
