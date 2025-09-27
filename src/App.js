@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Home from './Home';
 import Create from './Create';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom/cjs/react-router-dom';
+import BlogDetails from './BlogDetails';
 
 function App() {
 
@@ -18,6 +19,9 @@ function App() {
             </Route>
             <Route exact path="/create-post">
               <Create/>
+            </Route>
+            <Route exact path="/blog-details/:id">
+              <BlogDetails/>
             </Route>
           </Switch>
         </div>
